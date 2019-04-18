@@ -10,6 +10,16 @@ export default [
     view: 'Dashboard'
   },
   {
+    path: '/valuations',
+    name: 'Valuation',
+    view: 'Valuation'
+  },
+  {
+    path: '/performances',
+    name: 'Performance',
+    view: 'Performance'
+  },
+  {
     path: '/user-profile',
     name: 'User Profile',
     view: 'UserProfile'

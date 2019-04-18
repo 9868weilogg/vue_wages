@@ -26,10 +26,39 @@
             class="title font-weight-light mb-2"
             v-text="title"
           />
-          <p
+          <!-- <p
             class="category font-weight-thin"
             v-text="text"
-          />
+          /> -->
+          <!-- <span v-if="watchlistToolbar">
+            <v-select
+              :items="$store.state.watchlists"
+              item-value="id"
+              item-text="name"
+              label="Watchlists"
+              @change="switchWatchlist"
+            ></v-select>
+            
+          </span> -->
+          <span v-if="searchToolbar">
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Stock Name"
+              single-line
+              hide-details
+            ></v-text-field>
+          </span>
+          <span v-if="companyToolbar">
+            <v-combobox
+              v-model="select"
+              :items="items"
+              label="I use chips"
+              multiple
+              chips
+              @change="updateShowCompany()"
+            ></v-combobox>
+          </span>
         </span>
       </v-card>
       <slot
@@ -55,6 +84,14 @@
 
 <script>
 export default {
+  data() {
+    return {
+      watchlistToolbar: false,
+      searchToolbar: false,
+      companyToolbar: false,
+      select: this.$store.getters.showCompanies,
+    }
+  },
   inheritAttrs: false,
 
   props: {
@@ -88,6 +125,12 @@ export default {
     }
   },
 
+  methods: {
+    updateShowCompany() {
+      this.$store.commit('updateCompanyHeaders', {'select': this.select})
+    },
+  },
+
   computed: {
     hasOffset () {
       return this.$slots.header ||
@@ -102,8 +145,21 @@ export default {
         marginBottom: `${this.offset}px`,
         marginTop: `${this.offset * 2}px`
       }
+    },
+    items() {
+      return this.$store.getters.allCompanies
+    },
+  },
+
+  mounted() {
+    if(this.title == "Watchlist") {
+      this.watchlistToolbar = true
+    } else if(this.title == "Search" || this.title == "Fundamental") {
+      this.searchToolbar = true
+    } else if(this.title == "Free Cash Flow Yield") {
+      this.companyToolbar = true
     }
-  }
+  },
 }
 </script>
 
