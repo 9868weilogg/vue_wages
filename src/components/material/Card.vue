@@ -53,7 +53,7 @@
             <v-combobox
               v-model="select"
               :items="items"
-              label="I use chips"
+              label="Pick 3 companies"
               multiple
               chips
             ></v-combobox>
@@ -153,15 +153,15 @@ export default {
       }
     },
     items() {
-      return this.$store.getters.allCompanies
+      return this.$store.getters['valuation/allCompanies']
     },
     select: {
       get() {
-        return this.$store.getters.showCompanies
+        return this.$store.getters['valuation/showCompanies']
       },
       set(value) {
-        this.$store.commit('clearShownCompanies', [])
-        this.$store.commit('updateCompanyHeaders', {'select': value})
+        this.$store.commit('valuation/clearShownCompanies', [])
+        this.$store.commit('valuation/updateCompanyHeaders', {'select': value})
         if(this.select.length > 3)
           this.showSnackbar('System able to show maximum 3 companies only.')
         else
