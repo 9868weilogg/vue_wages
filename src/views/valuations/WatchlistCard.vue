@@ -55,7 +55,7 @@
           <v-btn
             color="warning"
             flat
-            @click="confirmDeleteDialog = false"
+            @click="deleteItem(readyDeleteItem)"
           >
             Yes
           </v-btn>
@@ -77,6 +77,7 @@ export default {
   
   data: () => ({
     confirmDeleteDialog : false,
+    readyDeleteItem: "",
     headers: [
       {
         sortable: false,
@@ -114,10 +115,13 @@ export default {
   }),
   methods : {
     confirmDelete(item){
-      console.log(item)
       this.confirmDeleteDialog = true
-
+      this.readyDeleteItem = item
     },
+    deleteItem(item) {
+      this.items.splice(this.items.indexOf(item),1)
+      this.confirmDeleteDialog = false
+    }
   },
 }
 </script>
