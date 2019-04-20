@@ -136,7 +136,7 @@ export default {
     
   },
   mounted() {
-    console.log(this.$store.state.company1)
-  }
+
+  },
 }
 </script>
