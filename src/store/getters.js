@@ -2,17 +2,14 @@
 
 export default {
   allCompanies: state => {
-    // let array = []
     state.companyData.forEach(function(value) {
       state.companies.all.push(value.company)
     })
     return state.companies.all
   },
-  showCompanies: state => {
-    // let array = []
+  showCompanies: (state) => {
     for(let key in state.companyHeaders) {
       if(key != 0) {
-        // console.log(key)
         state.companies.shown.push(state.companyHeaders[key].text)  
       }
     }
@@ -22,7 +19,6 @@ export default {
     let companies = getters.showCompanies
     let array = []
     companies.forEach(function(company) {
-      // console.log(state.companyData.filter(x => x.company == company))
       array.push(state.companyData.filter(x => x.company == company)[0])
     })
     return array

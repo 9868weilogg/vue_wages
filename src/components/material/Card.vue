@@ -56,7 +56,6 @@
               label="I use chips"
               multiple
               chips
-              @change="updateShowCompany()"
             ></v-combobox>
           </span>
         </span>
@@ -89,7 +88,6 @@ export default {
       watchlistToolbar: false,
       searchToolbar: false,
       companyToolbar: false,
-      select: this.$store.getters.showCompanies,
     }
   },
   inheritAttrs: false,
@@ -126,13 +124,6 @@ export default {
   },
 
   methods: {
-    updateShowCompany() {
-      this.$store.commit('updateCompanyHeaders', {'select': this.select})
-      if(this.select.length > 3)
-        this.showSnackbar('System able to show maximum 3 companies only.')
-      else
-        this.showSnackbar('Company list updated.')
-    },
     showSnackbar(text) {
       let value = {
         snackbar: true,
@@ -164,6 +155,19 @@ export default {
     items() {
       return this.$store.getters.allCompanies
     },
+    select: {
+      get() {
+        return this.$store.getters.showCompanies
+      },
+      set(value) {
+        this.$store.commit('clearShownCompanies', [])
+        this.$store.commit('updateCompanyHeaders', {'select': value})
+        if(this.select.length > 3)
+          this.showSnackbar('System able to show maximum 3 companies only.')
+        else
+          this.showSnackbar('Company list updated.')
+      },
+    }
   },
 
   mounted() {
