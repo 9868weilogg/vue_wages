@@ -7,8 +7,23 @@
     <core-drawer />
 
     <core-view />
+
+    <core-snackbar />
   </v-app>
 </template>
+
+<script type="text/javascript">
+  export default {
+    data () {
+      return {
+        
+      }
+    },
+    methods: {
+    
+    },
+  }
+</script>
 
 <style lang="scss">
 @import '@/styles/index.scss';

@@ -128,6 +128,21 @@ export default {
   methods: {
     updateShowCompany() {
       this.$store.commit('updateCompanyHeaders', {'select': this.select})
+      if(this.select.length > 3)
+        this.showSnackbar('System able to show maximum 3 companies only.')
+      else
+        this.showSnackbar('Company list updated.')
+    },
+    showSnackbar(text) {
+      let value = {
+        snackbar: true,
+        y       : 'bottom',
+        x       : 'right',
+        mode    : '',
+        timeout : 3000,
+        text    : text,
+      }
+      this.$store.commit('app/setSnackbarState', value)
     },
   },
 
