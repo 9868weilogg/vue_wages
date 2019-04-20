@@ -53,7 +53,7 @@
           <v-btn
             color="success"
             flat
-            @click="addItem(readyAddItem)"
+            @click="validateItemExisted(readyAddItem)"
           >
             Yes
           </v-btn>
@@ -96,10 +96,20 @@
         this.addStockDialog = true
         this.readyAddItem = item
       },
+      validateItemExisted(item) {
+        let watchlistStocks = this.$store.state.valuation.watchlistStocks
+        let stockExisted = watchlistStocks.filter(x => x.name == item.name)
+        if(stockExisted.length > 0) {
+          this.showSnackbar("Stock existed in watchlist.")
+          this.addStockDialog = false
+        } else {
+          this.addItem(item)
+        }
+      },
       addItem(item) {
         this.$store.commit('valuation/setWatchlistStock', {'watchlistStock': item})
-        this.addStockDialog = false
         this.showSnackbar("Stock added into watchlist.")
+        this.addStockDialog = false
       },
       showSnackbar(text) {
         let value = {
