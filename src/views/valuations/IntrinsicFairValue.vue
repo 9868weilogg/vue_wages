@@ -6,7 +6,7 @@
       text="Here is a subtitle for this table"
     >
       <v-data-table
-        :headers="$store.state.companyHeaders"
+        :headers="headers"
         :items="intrinsicFairValueItems"
         hide-actions
       >
@@ -40,28 +40,6 @@
     },
     data: () => ({
       addStockDialog : false,
-      headers: [
-        {
-          sortable: false,
-          text: 'field',
-          value: 'field'
-        },
-        {
-          sortable: false,
-          text: 'Maybank',
-          value: 'company1'
-        },
-        {
-          sortable: false,
-          text: 'Wellcall',
-          value: 'company2'
-        },
-        {
-          sortable: false,
-          text: 'Inari',
-          value: 'company3'
-        },
-      ],
     }),
     methods :{
       addWatchlist(item) {
@@ -71,7 +49,10 @@
     },
     computed: {
       intrinsicFairValueItems() {
-        return this.$store.getters.intrinsicFairValueItems
+        return this.$store.getters['valuation/intrinsicFairValueItems']
+      },
+      headers() {
+        return this.$store.state.valuation.companyHeaders
       },
     },
   }

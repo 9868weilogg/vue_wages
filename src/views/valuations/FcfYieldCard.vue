@@ -6,7 +6,7 @@
       text="Here is a subtitle for this table"
     >
       <v-data-table
-        :headers="$store.state.companyHeaders"
+        :headers="headers"
         :items="fcfYieldItems"
         hide-actions
       >
@@ -49,8 +49,11 @@
     },
     computed: {
       fcfYieldItems() {
-        return this.$store.getters.fcfYieldItems
-      }
+        return this.$store.getters['valuation/fcfYieldItems']
+      },
+      headers() {
+        return this.$store.state.valuation.companyHeaders
+      },
     }
   }
 </script>

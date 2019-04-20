@@ -6,7 +6,7 @@
       text="Here is a subtitle for this table"
     >
       <v-data-table
-        :headers="$store.state.companyHeaders"
+        :headers="headers"
         :items="fundamentalAnalysisItems"
         hide-actions
       >
@@ -94,7 +94,10 @@
     },
     computed: {
       fundamentalAnalysisItems() {
-        return this.$store.getters.fundamentalAnalysisItems
+        return this.$store.getters['valuation/fundamentalAnalysisItems']
+      },
+      headers() {
+        return this.$store.state.valuation.companyHeaders
       },
     }
   }
