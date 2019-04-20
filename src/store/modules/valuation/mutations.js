@@ -15,4 +15,7 @@ export default {
   clearShownCompanies: (state, payload) => {
     state.companies.shown = payload
   },
+  setSearchStock: (state, payload) => {
+    state.searchStock = payload.searchStock
+  },
 }

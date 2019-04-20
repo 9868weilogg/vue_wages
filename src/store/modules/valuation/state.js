@@ -271,4 +271,15 @@ export default {
       ],
     },
   ],
+  allStocks: [
+    {
+      code: '1155',
+      name: 'Maybank',
+    },
+    {
+      code: '5250',
+      name: 'SEM',
+    },
+  ],
+  searchStock: [],
 }
