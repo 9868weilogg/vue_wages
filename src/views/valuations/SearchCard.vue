@@ -89,16 +89,6 @@
           value: 'name'
         },
       ],
-      items: [
-        {
-          code: '1155',
-          name: 'Maybank',
-        },
-        {
-          code: '5250',
-          name: 'SEM',
-        },
-      ]
     }),
     methods :{
       addWatchlist(item) {
@@ -106,5 +96,10 @@
         this.addStockDialog = true
       }
     },
+    computed: {
+      items() {
+        return this.$store.state.valuation.searchStock
+      },
+    }
   }
 </script>

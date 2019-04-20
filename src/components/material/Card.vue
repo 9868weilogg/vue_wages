@@ -155,6 +155,25 @@ export default {
     items() {
       return this.$store.getters['valuation/allCompanies']
     },
+    search: {
+      get() {
+        return ""
+      },
+      set(value) {
+        let allStocks = this.$store.state.valuation.allStocks
+        let searchStock = []
+        allStocks.forEach(function(stock) {
+          if(stock.name.toLowerCase().includes(value.toLowerCase()))
+            searchStock.push(stock)
+          if(stock.code.toLowerCase().includes(value.toLowerCase()))
+            searchStock.push(stock)
+        })
+        if(value == "")
+          searchStock = []
+
+        this.$store.commit('valuation/setSearchStock', {'searchStock' : searchStock})
+      }
+    },
     select: {
       get() {
         return this.$store.getters['valuation/showCompanies']
