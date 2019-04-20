@@ -18,4 +18,7 @@ export default {
   setSearchStock: (state, payload) => {
     state.searchStock = payload.searchStock
   },
+  setWatchlistStock: (state, payload) => {
+    state.watchlistStocks.push(payload.watchlistStock)
+  },
 }

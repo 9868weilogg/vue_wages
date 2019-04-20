@@ -23,7 +23,7 @@
           slot="items"
           slot-scope="{ item }"
         >
-          <tr @click="addWatchlist(item)">
+          <tr @click="confirmAdd(item)">
             <td>{{ item.code }}</td>
             <td>{{ item.name }}</td>
           </tr>
@@ -39,11 +39,11 @@
           class="headline grey lighten-2"
           primary-title
         >
-          Confirm Delete
+          Confirm Add
         </v-card-title>
 
         <v-card-text>
-          Are you confirm to delete this?
+          Are you confirm to add this into watchlist?
         </v-card-text>
 
         <v-divider></v-divider>
@@ -51,14 +51,14 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            color="warning"
+            color="success"
             flat
-            @click="addStockDialog = false"
+            @click="addItem(readyAddItem)"
           >
             Yes
           </v-btn>
           <v-btn
-            color="primary"
+            color="error"
             flat
             @click="addStockDialog = false"
           >
@@ -77,6 +77,7 @@
     },
     data: () => ({
       addStockDialog : false,
+      readyAddItem : "",
       headers: [
         {
           sortable: false,
@@ -91,10 +92,26 @@
       ],
     }),
     methods :{
-      addWatchlist(item) {
-        console.log(item)
+      confirmAdd(item) {
         this.addStockDialog = true
-      }
+        this.readyAddItem = item
+      },
+      addItem(item) {
+        this.$store.commit('valuation/setWatchlistStock', {'watchlistStock': item})
+        this.addStockDialog = false
+        this.showSnackbar("Stock added into watchlist.")
+      },
+      showSnackbar(text) {
+        let value = {
+          snackbar: true,
+          y       : 'bottom',
+          x       : 'right',
+          mode    : '',
+          timeout : 3000,
+          text    : text,
+        }
+        this.$store.commit('app/setSnackbarState', value)
+      },
     },
     computed: {
       items() {

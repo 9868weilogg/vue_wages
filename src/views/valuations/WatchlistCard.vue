@@ -95,23 +95,6 @@ export default {
         value: 'change'
       },
     ],
-    items: [
-      {
-        name: 'Wellcall',
-        price: 'RM 1.00',
-        change: '1%'
-      },
-      {
-        name: 'Inari',
-        price: 'RM 1.00',
-        change: '1%'
-      },
-      {
-        name: 'CIMB',
-        price: 'RM 1.00',
-        change: '1%'
-      },
-    ],
   }),
   methods : {
     confirmDelete(item){
@@ -121,7 +104,26 @@ export default {
     deleteItem(item) {
       this.items.splice(this.items.indexOf(item),1)
       this.confirmDeleteDialog = false
-    }
+      this.showSnackbar("Stock deleted from watchlist.")
+    },
+    showSnackbar(text) {
+      let value = {
+        snackbar: true,
+        y       : 'bottom',
+        x       : 'right',
+        mode    : '',
+        timeout : 3000,
+        text    : text,
+      }
+      this.$store.commit('app/setSnackbarState', value)
+    },
   },
+  computed: {
+    items: {
+      get() {
+        return this.$store.state.valuation.watchlistStocks
+      }
+    }
+  }
 }
 </script>
