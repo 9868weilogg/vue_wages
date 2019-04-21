@@ -23,11 +23,58 @@
           slot="items"
           slot-scope="{ item }"
         >
-          <td>{{ item.field }}</td>
-          <td>{{ item.mark }}</td>
+          <tr @click="updateMarkDialog(item)">
+            <td>{{ item.field }}</td>
+            <td>{{ item.mark }}</td>
+          </tr>
         </template>
       </v-data-table>
     </material-card>
+    <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+
+      <v-card>
+        <v-card-title
+          class="headline grey lighten-2"
+          primary-title
+        >
+          {{ selectedItem.field }}
+        </v-card-title>
+
+        <v-card-text>
+          <v-select
+            :items="marks"
+            :value="selectedItem.mark"
+            label="Mark"
+            ref="mark"
+            @change="changeMark($event)"
+            outline
+          ></v-select>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            flat
+            @click="updateMark()"
+          >
+            Update
+          </v-btn>
+          <v-btn
+            color="error"
+            flat
+            @click="undoMark()"
+          >
+            Cancel
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -37,7 +84,10 @@
       
     },
     data: () => ({
-      addStockDialog : false,
+      dialog : false,
+      selectedItem: "",
+      newMark: "",
+      marks: [1, 2, 3, 4, 5],
       headers: [
         {
           sortable: false,
@@ -50,42 +100,28 @@
           value: 'mark'
         },
       ],
-      items: [
-        {
-          field: 'Future Grow',
-          mark: '5%',
-        },
-        {
-          field: 'Competitiveness',
-          mark: '5%',
-        },
-        {
-          field: 'Net Margin > 15%',
-          mark: '5%',
-        },
-        {
-          field: 'GP Cash > 0.8',
-          mark: '5%',
-        },
-        {
-          field: 'Marginal Cost',
-          mark: '5%',
-        },
-        {
-          field: 'Leadership',
-          mark: '5%',
-        },
-        {
-          field: 'Talent',
-          mark: '5%',
-        },
-      ]
     }),
     methods :{
-      addWatchlist(item) {
-        console.log(item)
-        this.addStockDialog = true
-      }
+      updateMarkDialog(item) {
+        this.dialog = true
+        this.selectedItem = item
+      },
+      updateMark() {
+        this.$store.commit('valuation/setFisherMark', {'mark': this.newMark, 'item': this.selectedItem})
+        this.dialog = false
+      },
+      undoMark() {
+        this.$store.commit('valuation/undoFisherMark', {'mark': this.$refs.mark.value, 'item': this.selectedItem})
+        this.dialog = false
+      },
+      changeMark(event) {
+        this.newMark = event
+      },
+    },
+    computed: {
+      items() {
+        return this.$store.state.valuation.fisherApproach
+      },
     },
   }
 </script>
