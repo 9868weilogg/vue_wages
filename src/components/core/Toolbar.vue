@@ -44,7 +44,7 @@
         >
           <v-icon color="tertiary">mdi-view-dashboard</v-icon>
         </router-link>
-        <v-menu
+        <!-- <v-menu
           bottom
           left
           content-class="dropdown-menu"
@@ -86,7 +86,7 @@
           to="/user-profile"
         >
           <v-icon color="tertiary">mdi-account</v-icon>
-        </router-link>
+        </router-link> -->
       </v-flex>
     </v-toolbar-items>
   </v-toolbar>
