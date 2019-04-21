@@ -324,4 +324,83 @@ export default {
       change: '1%'
     },
   ],
+  buffettApproach: [
+    {
+      field: 'Business Sexiness',
+      mark: 5,
+    },{
+      field: 'Supplier No.',
+      mark: 5,
+    },
+    {
+      field: 'Customer Choice',
+      mark: 5,
+    },
+    {
+      field: 'Entry Barrier',
+      mark: 5,
+    },
+    {
+      field: 'Substitute',
+      mark: 5,
+    },
+    {
+      field: 'Competition No.',
+      mark: 5,
+    },
+    {
+      field: 'Competitiveness',
+      mark: 5,
+    },
+    {
+      field: 'FPE < 25',
+      mark: 5,
+    },
+    {
+      field: 'Gearing < 1.5',
+      mark: 5,
+    },
+    {
+      field: 'GP Cash > 0.8',
+      mark: 5,
+    },
+    {
+      field: 'Good Will',
+      mark: 5,
+    },
+    {
+      field: 'Customer Loyalty',
+      mark: 5,
+    },
+  ],
+  fisherApproach: [
+    {
+      field: 'Future Grow',
+      mark: 5,
+    },
+    {
+      field: 'Competitiveness',
+      mark: 5,
+    },
+    {
+      field: 'Net Margin > 15%',
+      mark: 5,
+    },
+    {
+      field: 'GP Cash > 0.8',
+      mark: 5,
+    },
+    {
+      field: 'Marginal Cost',
+      mark: 5,
+    },
+    {
+      field: 'Leadership',
+      mark: 5,
+    },
+    {
+      field: 'Talent',
+      mark: 5,
+    },
+  ],
 }

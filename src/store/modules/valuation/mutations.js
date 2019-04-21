@@ -21,4 +21,32 @@ export default {
   setWatchlistStock: (state, payload) => {
     state.watchlistStocks.push(payload.watchlistStock)
   },
+  setBuffettMark: (state, payload) => {
+    let item = payload.item
+    let object = state.buffettApproach.find(function(value) {
+      return value.field == item.field
+    })
+    object.mark = payload.mark
+  },
+  undoBuffettMark: (state, payload) => {
+    let item = payload.item
+    let object = state.buffettApproach.find(function(value) {
+      return value.field == item.field
+    })
+    object.mark = payload.mark
+  },
+  setFisherMark: (state, payload) => {
+    let item = payload.item
+    let object = state.fisherApproach.find(function(value) {
+      return value.field == item.field
+    })
+    object.mark = payload.mark
+  },
+  undoFisherMark: (state, payload) => {
+    let item = payload.item
+    let object = state.fisherApproach.find(function(value) {
+      return value.field == item.field
+    })
+    object.mark = payload.mark
+  },
 }
