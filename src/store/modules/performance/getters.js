@@ -49,13 +49,13 @@ export default {
       let counters         = state.transactions.filter(x => x.counterName == value)
       counters.forEach(function(value) {
         if(value.type == "buy") {
-          quantity         += value.quantity
-          averageCost      += (value.averageCost)/counters.filter(x => x.type == "buy").length
-          costOfInvestment += value.costOfInvestment
+          quantity         += parseFloat(value.quantity)
+          averageCost      += parseFloat(value.averageCost)/counters.filter(x => x.type == "buy").length
+          costOfInvestment += parseFloat(value.costOfInvestment)
         } else if(value.type == "sell") {
-          quantity         -= value.quantity
-          averageCost      -= (value.averageCost)/counters.filter(x => x.type == "buy").length
-          costOfInvestment -= value.costOfInvestment
+          quantity         -= parseFloat(value.quantity)
+          averageCost      -= parseFloat(value.averageCost)/counters.filter(x => x.type == "buy").length
+          costOfInvestment -= parseFloat(value.costOfInvestment)
         }
         counterName      = value.counterName
         counterCode      = value.counterCode
@@ -63,16 +63,18 @@ export default {
       currentValue = quantity * currentPrice
       result       = currentValue - costOfInvestment
 
-      holdingCounters.push({
-        counterName     : counterName,
-        counterCode     : counterCode,
-        quantity        : quantity,
-        averageCost     : averageCost,
-        currentPrice    : currentPrice,
-        costOfInvestment: costOfInvestment,
-        currentValue    : currentValue,
-        result          : result,
-      })
+      if(quantity > 0) {
+        holdingCounters.push({
+          counterName     : counterName,
+          counterCode     : counterCode,
+          quantity        : quantity,
+          averageCost     : averageCost,
+          currentPrice    : currentPrice,
+          costOfInvestment: costOfInvestment,
+          currentValue    : currentValue,
+          result          : result,
+        })
+      }
     })    
     return holdingCounters  
   },
