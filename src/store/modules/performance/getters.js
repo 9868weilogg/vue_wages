@@ -85,4 +85,19 @@ export default {
     })
     return sum
   },
+  monthPicker: (state) => {
+    let today        = new Date()
+    let currentMonth = today.getMonth()
+    let currentYear  = today.getFullYear()
+    let monthArray   = []
+
+    for(let i=currentMonth; i>=0; i--) {
+      monthArray.push({
+        'text': state.months[i] + ', ' + currentYear,
+        'month': i,
+        'year': currentYear
+      })
+    }
+    return monthArray
+  },
 }

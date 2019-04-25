@@ -2,7 +2,7 @@
   <div>
     <material-card
       color="purple"
-      title="Monthly Result (January 2019)"
+      title="Performance"
       text="Complete your profile"
     >
       <div class="table-responsive">
@@ -211,7 +211,7 @@ export default {
   data() {
     return {
       buyTransactionDialog: false,  
-      sellTransactionDialog: false,  
+      sellTransactionDialog: false, 
     }
   },
   components: {
@@ -224,12 +224,20 @@ export default {
   computed: {
     buyTransactions: {
       get() {
-        return this.$store.getters['performance/buyTransactions']
+        let allBuyTransactions = this.$store.getters['performance/buyTransactions']
+        let buyTransactions = allBuyTransactions.filter(x => x.transactionMonth == this.currentMonth)
+                                                .filter(x => x.transactionYear == this.currentYear)
+
+        return buyTransactions
       },
     },
     sellTransactions: {
       get() {
-        return this.$store.getters['performance/sellTransactions']
+        let allSellTransactions = this.$store.getters['performance/sellTransactions']
+        let sellTransactions = allSellTransactions.filter(x => x.transactionMonth == this.currentMonth)
+                                                .filter(x => x.transactionYear == this.currentYear)
+
+        return sellTransactions
       },
     },
     holdingCounters: {
@@ -302,6 +310,16 @@ export default {
     currentMonthValue: {
       get() {
         return this.lastMonthValue + this.currentMonthCash
+      },
+    },
+    currentMonth: {
+      get() {
+        return this.$store.state.performance.pickedMonth.month 
+      },
+    },
+    currentYear: {
+      get() {
+        return this.$store.state.performance.pickedMonth.year
       },
     },
   },
