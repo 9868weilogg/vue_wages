@@ -58,6 +58,13 @@
               chips
             ></v-combobox>
           </span>
+          <span v-if="monthToolbar">
+            <v-select
+              :items="months.map(x => x.text)"
+              label="Months"
+              @change="pickMonth($event)"
+            ></v-select>
+          </span>
         </span>
       </v-card>
       <slot
@@ -88,6 +95,7 @@ export default {
       watchlistToolbar: false,
       searchToolbar: false,
       companyToolbar: false,
+      monthToolbar: false,
     }
   },
   inheritAttrs: false,
@@ -134,6 +142,12 @@ export default {
         text    : text,
       }
       this.$store.commit('app/setSnackbarState', value)
+    },
+    pickMonth(event) {
+      let selectedMonth = this.months.find(function(value) {
+        return value.text == event
+      })
+      this.$store.commit('performance/setPickedMonth', {'month': selectedMonth})
     },
   },
 
@@ -186,7 +200,12 @@ export default {
         else
           this.showSnackbar('Company list updated.')
       },
-    }
+    },
+    months: {
+      get() {
+        return this.$store.getters['performance/monthPicker']
+      },
+    },
   },
 
   mounted() {
@@ -196,6 +215,8 @@ export default {
       this.searchToolbar = true
     } else if(this.title == "Free Cash Flow Yield") {
       this.companyToolbar = true
+    } else if(this.title == "Monthly Result") {
+      this.monthToolbar = true
     }
   },
 }

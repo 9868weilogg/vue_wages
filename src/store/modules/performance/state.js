@@ -83,4 +83,22 @@ export default {
       'amount': 1000,
     },
   ],
+  'months': [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ],
+  'pickedMonth': {
+    'month': (new Date()).getMonth(),
+    'year': (new Date()).getFullYear(),
+  }
 }
