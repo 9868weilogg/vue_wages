@@ -1,5 +1,5 @@
 <template>
-  <!-- <v-container
+  <v-container
     fill-height
     fluid
     grid-list-xl
@@ -10,7 +10,7 @@
         sm12
         lg4
       >
-        <material-chart-card
+        <!-- <material-chart-card
           :data="dailySalesChart.data"
           :options="dailySalesChart.options"
           color="info"
@@ -353,14 +353,19 @@
               </v-list>
             </v-tab-item>
           </v-tabs-items>
-        </material-card>
+        </material-card> -->
+        <test-chart :style="{ 'width':'400px', 'height':'400px' }"></test-chart>
       </v-flex>
     </v-layout>
-  </v-container> -->
+  </v-container>
 </template>
 
 <script>
+import TestChart from '@/views/dashboards/TestChart'
 export default {
+  components: {
+    TestChart,
+  },
   data () {
     return {
       dailySalesChart: {
