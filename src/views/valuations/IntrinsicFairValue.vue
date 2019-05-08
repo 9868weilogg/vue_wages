@@ -39,13 +39,10 @@
       
     },
     data: () => ({
-      addStockDialog : false,
+
     }),
     methods :{
-      addWatchlist(item) {
-        console.log(item)
-        this.addStockDialog = true
-      }
+
     },
     computed: {
       intrinsicFairValueItems() {
