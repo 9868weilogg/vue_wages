@@ -86,7 +86,7 @@ export default {
       },
       {
         sortable: false,
-        text: 'Price',
+        text: 'Price (RM)',
         value: 'price'
       },
       {

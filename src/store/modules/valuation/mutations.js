@@ -49,4 +49,7 @@ export default {
     })
     object.mark = payload.mark
   },
+  apiGetAllStocks: (state, payload) => {
+    state.allStocks = payload.stocks
+  },
 }

@@ -17,6 +17,11 @@ import i18n from '@/i18n'
 import router from '@/router'
 import store from '@/store'
 
+//  use axios
+window.axios = require('axios');
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+Vue.prototype.$http = window.axios
+
 // Sync store with router
 sync(store, router)
 
