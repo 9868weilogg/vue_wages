@@ -275,32 +275,32 @@ export default {
     {
       code: '1155',
       name: 'Maybank',
-      price: 'RM 1.00',
-      change: '1%'
+      price: '1.00',
+      change: '1'
     },
     {
       code: '5250',
       name: 'SEM',
-      price: 'RM 1.00',
-      change: '1%'
+      price: '1.00',
+      change: '1'
     },
     {
       code: '7231',
       name: 'Wellcall',
-      price: 'RM 1.00',
-      change: '1%'
+      price: '1.00',
+      change: '1'
     },
     {
       code: '0166',
       name: 'Inari',
-      price: 'RM 1.00',
-      change: '1%'
+      price: '1.00',
+      change: '1'
     },
     {
       code: '1023',
       name: 'CIMB',
-      price: 'RM 1.00',
-      change: '1%'
+      price: '1.00',
+      change: '1'
     },
   ],
   searchStock: [],
@@ -308,20 +308,20 @@ export default {
     {
       code: '7231',
       name: 'Wellcall',
-      price: 'RM 1.00',
-      change: '1%'
+      price: '1.00',
+      change: '1'
     },
     {
       code: '0166',
       name: 'Inari',
-      price: 'RM 1.00',
-      change: '1%'
+      price: '1.00',
+      change: '1'
     },
     {
       code: '1023',
       name: 'CIMB',
-      price: 'RM 1.00',
-      change: '1%'
+      price: '1.00',
+      change: '1'
     },
   ],
   buffettApproach: [

@@ -135,8 +135,43 @@ export default {
   methods :{
     
   },
-  mounted() {
+  mounted(){
+    let allStocks = {
+      'stocks': [],
+      'prices': []
+    }
 
+    this.$http.get("http://localhost:8000/api/stocks")
+    .then(response => {
+      allStocks.stocks = response.data.data    
+    })
+    .catch(error => {
+      console.log(error.response)
+    })
+
+    this.$http.get("http://localhost:8000/api/stock-prices")
+    .then(response => {
+      allStocks.prices = response.data.data
+    })
+    .then( () => {
+      allStocks.stocks.forEach(function(value, index) {
+        value.price     = 0
+        value.change    = 0
+        let latestPrice = allStocks.prices.filter(x => x.code == value.code)[0]
+        let ytdPrice    = allStocks.prices.filter(x => x.code == value.code)[1]
+        if(latestPrice){
+          let percentChange = (parseFloat(latestPrice.close) - parseFloat(ytdPrice.close))/parseFloat(ytdPrice.close)*100
+          value.price       = latestPrice.close
+          value.change      = percentChange
+        }
+      })
+    })
+    .then( () => {
+      this.$store.commit('valuation/apiGetAllStocks', allStocks)      
+    })
+    .catch(error => {
+      console.log(error.response)
+    })
   },
 }
 </script>
