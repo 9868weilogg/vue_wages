@@ -108,7 +108,21 @@
       },
       addItem(item) {
         this.$store.commit('valuation/setWatchlistStock', {'watchlistStock': item})
-        this.showSnackbar("Stock added into watchlist.")
+        this.$http({
+          method: 'post',
+          url: "http://localhost:8000/api/watchlist-items",
+          data: {
+            'code' : item.code,
+            'watchlist_id' : 1,
+          }
+        })
+        .then(response => {
+          this.showSnackbar(response.data)
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error.response)
+        })
         this.addStockDialog = false
       },
       showSnackbar(text) {
