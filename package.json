@@ -10,7 +10,7 @@
   "dependencies": {
     "@mdi/font": "^3.5.95",
     "axios": "^0.18.0",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "chartist": "^0.11.0",
     "core-js": "^2.6.5",
     "node-sass": "^4.12.0",
